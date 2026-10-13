@@ -1,0 +1,691 @@
+{
+ "id": "ira-type04",
+ "brochure": "brochure_5",
+ "project": "IRA Aspiration",
+ "page": 21,
+ "name": "Type 04",
+ "type": "3 BHK",
+ "facing": "West",
+ "area_sft": 1595,
+ "floor": "2nd to 9th floors · Blocks A–E",
+ "northDeg": 90,
+ "scale": 9.452,
+ "wallExtMM": 230,
+ "wallIntMM": 115,
+ "offset": [
+  2250,
+  1090
+ ],
+ "crop": {
+  "pdf": "IRA Aspiration final-4th April-2022 (2).pdf",
+  "page": 21,
+  "dpi": 192,
+  "px": true,
+  "box": [
+   2250,
+   1090,
+   3490,
+   2390
+  ]
+ },
+ "rooms": [
+  {
+   "id": "master",
+   "name": "Master Bedroom",
+   "mat": "wood",
+   "rect": [
+    60,
+    120,
+    411,
+    566
+   ],
+   "dim": "11'-3\" × 14'-3\""
+  },
+  {
+   "id": "balcony",
+   "name": "Balcony",
+   "mat": "terrazzo",
+   "noWall": true,
+   "rect": [
+    430,
+    1078,
+    778,
+    1244
+   ],
+   "dim": "11'-7½\" × 5'-3\""
+  },
+  {
+   "id": "hall",
+   "name": "Dining / Living",
+   "mat": "tile800",
+   "at": [
+    600,
+    620
+   ],
+   "poly": [
+    [
+     420,
+     118
+    ],
+    [
+     775,
+     118
+    ],
+    [
+     775,
+     462
+    ],
+    [
+     912,
+     462
+    ],
+    [
+     912,
+     770
+    ],
+    [
+     775,
+     770
+    ],
+    [
+     775,
+     1060
+    ],
+    [
+     425,
+     1060
+    ],
+    [
+     425,
+     822
+    ],
+    [
+     272,
+     822
+    ],
+    [
+     272,
+     568
+    ],
+    [
+     420,
+     568
+    ]
+   ],
+   "dim": "Drawing/Living 11'-3\" × 10'-10½\" · Dining 16'-1½\" × 18'-8\""
+  },
+  {
+   "id": "guest",
+   "name": "Guest Bedroom",
+   "mat": "wood",
+   "rect": [
+    800,
+    120,
+    1176,
+    460
+   ],
+   "dim": "12'-4½\" × 10'-10½\""
+  },
+  {
+   "id": "toilet1",
+   "name": "Toilet 1",
+   "mat": "antislip",
+   "rect": [
+    917,
+    468,
+    1176,
+    608
+   ],
+   "dim": "8'-3\" × 4'-6\""
+  },
+  {
+   "id": "toilet2",
+   "name": "Toilet 2",
+   "mat": "antislip",
+   "rect": [
+    917,
+    628,
+    1176,
+    768
+   ],
+   "dim": "8'-3\" × 4'-6\""
+  },
+  {
+   "id": "kids",
+   "name": "Children Bedroom",
+   "mat": "wood",
+   "rect": [
+    802,
+    776,
+    1176,
+    1106
+   ],
+   "dim": "12'-4½\" × 10'-6\""
+  },
+  {
+   "id": "toilet3",
+   "name": "Toilet 3",
+   "mat": "antislip",
+   "rect": [
+    60,
+    570,
+    260,
+    818
+   ],
+   "dim": "6'-4½\" × 7'-6\""
+  },
+  {
+   "id": "utility",
+   "name": "Utility",
+   "mat": "antislip",
+   "rect": [
+    47,
+    826,
+    182,
+    1105
+   ],
+   "dim": "4'-1½\" × 9'-4½\""
+  },
+  {
+   "id": "kitchen",
+   "name": "Kitchen",
+   "mat": "tile600",
+   "rect": [
+    190,
+    826,
+    411,
+    1105
+   ],
+   "dim": "7'-1½\" × 9'-0\""
+  }
+ ],
+ "doors": [
+  {
+   "x": 695,
+   "y": 105,
+   "axis": "h",
+   "w": 100,
+   "hinge": "b",
+   "swing": 1,
+   "entry": true,
+   "name": "Main door"
+  },
+  {
+   "x": 418,
+   "y": 520,
+   "axis": "v",
+   "w": 85,
+   "hinge": "b",
+   "swing": -1,
+   "name": "Master bedroom door"
+  },
+  {
+   "x": 215,
+   "y": 567,
+   "axis": "h",
+   "w": 68,
+   "hinge": "a",
+   "swing": 1,
+   "name": "Toilet 3 door"
+  },
+  {
+   "x": 845,
+   "y": 466,
+   "axis": "h",
+   "w": 85,
+   "hinge": "a",
+   "swing": -1,
+   "name": "Guest bedroom door"
+  },
+  {
+   "x": 1055,
+   "y": 462,
+   "axis": "h",
+   "w": 65,
+   "hinge": "a",
+   "swing": 1,
+   "name": "Toilet 1 door"
+  },
+  {
+   "x": 1055,
+   "y": 772,
+   "axis": "h",
+   "w": 65,
+   "hinge": "a",
+   "swing": 1,
+   "name": "Toilet 2 door"
+  },
+  {
+   "x": 788,
+   "y": 835,
+   "axis": "v",
+   "w": 70,
+   "hinge": "b",
+   "swing": 1,
+   "name": "Children bedroom door"
+  }
+ ],
+ "gaps": [
+  {
+   "x": 183,
+   "y": 960,
+   "axis": "v",
+   "w": 70
+  },
+  {
+   "x": 345,
+   "y": 822,
+   "axis": "h",
+   "w": 140
+  }
+ ],
+ "slides": [
+  {
+   "x": 630,
+   "y": 1068,
+   "axis": "h",
+   "w": 230
+  }
+ ],
+ "wins": [
+  {
+   "x": 1192,
+   "y": 318,
+   "axis": "v",
+   "w": 165
+  },
+  {
+   "x": 1192,
+   "y": 538,
+   "axis": "v",
+   "w": 30
+  },
+  {
+   "x": 1192,
+   "y": 690,
+   "axis": "v",
+   "w": 30
+  },
+  {
+   "x": 1192,
+   "y": 935,
+   "axis": "v",
+   "w": 195
+  },
+  {
+   "x": 45,
+   "y": 510,
+   "axis": "v",
+   "w": 100
+  },
+  {
+   "x": 45,
+   "y": 600,
+   "axis": "v",
+   "w": 30
+  }
+ ],
+ "furn": [
+  [
+   "bed",
+   "Double Bed",
+   170,
+   365,
+   1800,
+   2000,
+   270
+  ],
+  [
+   "wardrobe",
+   "Wardrobe",
+   154,
+   150,
+   1900,
+   600,
+   0
+  ],
+  [
+   "nightstand",
+   "Nightstand",
+   85,
+   235,
+   450,
+   400,
+   0
+  ],
+  [
+   "tvstand",
+   "TV Unit",
+   393,
+   352,
+   1650,
+   400,
+   90
+  ],
+  [
+   "armchair",
+   "Armchair",
+   205,
+   495,
+   800,
+   800,
+   0
+  ],
+  [
+   "sofa",
+   "3-Seat Sofa",
+   452,
+   295,
+   2000,
+   850,
+   270
+  ],
+  [
+   "armchair",
+   "Armchair",
+   570,
+   150,
+   800,
+   800,
+   0
+  ],
+  [
+   "armchair",
+   "Armchair",
+   570,
+   425,
+   800,
+   800,
+   180
+  ],
+  [
+   "coffeetable",
+   "Coffee Table",
+   558,
+   295,
+   1000,
+   700,
+   90
+  ],
+  [
+   "tvstand",
+   "TV Unit",
+   761,
+   318,
+   1900,
+   400,
+   90
+  ],
+  [
+   "table",
+   "Dining Table",
+   611,
+   835,
+   2200,
+   1000,
+   90
+  ],
+  [
+   "chair",
+   "Dining Chair",
+   535,
+   765,
+   450,
+   480,
+   90
+  ],
+  [
+   "chair",
+   "Dining Chair",
+   535,
+   840,
+   450,
+   480,
+   90
+  ],
+  [
+   "chair",
+   "Dining Chair",
+   535,
+   905,
+   450,
+   480,
+   90
+  ],
+  [
+   "chair",
+   "Dining Chair",
+   688,
+   765,
+   450,
+   480,
+   270
+  ],
+  [
+   "chair",
+   "Dining Chair",
+   688,
+   840,
+   450,
+   480,
+   270
+  ],
+  [
+   "chair",
+   "Dining Chair",
+   688,
+   905,
+   450,
+   480,
+   270
+  ],
+  [
+   "fridge",
+   "Fridge",
+   305,
+   610,
+   700,
+   700,
+   90
+  ],
+  [
+   "cabinet",
+   "Crockery Unit",
+   300,
+   700,
+   1500,
+   400,
+   90
+  ],
+  [
+   "toilet",
+   "Toilet",
+   105,
+   632,
+   400,
+   700,
+   270
+  ],
+  [
+   "shower",
+   "Shower",
+   118,
+   752,
+   1000,
+   1300,
+   0
+  ],
+  [
+   "vanity",
+   "Vanity",
+   209,
+   788,
+   500,
+   400,
+   180
+  ],
+  [
+   "counter",
+   "Kitchen Counter",
+   188,
+   856,
+   2950,
+   600,
+   0
+  ],
+  [
+   "counter",
+   "Kitchen Counter",
+   230,
+   1075,
+   3500,
+   600,
+   180
+  ],
+  [
+   "stove",
+   "Gas Stove",
+   237,
+   1075,
+   750,
+   450,
+   180
+  ],
+  [
+   "ksink",
+   "Sink",
+   370,
+   1075,
+   800,
+   450,
+   180
+  ],
+  [
+   "washer",
+   "Washer",
+   108,
+   1060,
+   600,
+   600,
+   0
+  ],
+  [
+   "vanity",
+   "Wash Basin",
+   888,
+   615,
+   500,
+   400,
+   90
+  ],
+  [
+   "cabinet",
+   "Puja Unit",
+   735,
+   1045,
+   800,
+   450,
+   0
+  ],
+  [
+   "bed",
+   "Double Bed",
+   1018,
+   230,
+   1500,
+   2000,
+   0
+  ],
+  [
+   "wardrobe",
+   "Wardrobe",
+   823,
+   236,
+   2300,
+   500,
+   90
+  ],
+  [
+   "toilet",
+   "Toilet",
+   1148,
+   540,
+   400,
+   700,
+   90
+  ],
+  [
+   "vanity",
+   "Vanity",
+   1052,
+   585,
+   500,
+   400,
+   180
+  ],
+  [
+   "toilet",
+   "Toilet",
+   1148,
+   694,
+   400,
+   700,
+   90
+  ],
+  [
+   "vanity",
+   "Vanity",
+   1052,
+   660,
+   500,
+   400,
+   0
+  ],
+  [
+   "bed",
+   "Double Bed",
+   1015,
+   1010,
+   1500,
+   2000,
+   180
+  ],
+  [
+   "wardrobe",
+   "Wardrobe",
+   823,
+   1000,
+   2000,
+   500,
+   90
+  ],
+  [
+   "armchair",
+   "Armchair",
+   500,
+   1150,
+   750,
+   750,
+   0
+  ],
+  [
+   "roundtable",
+   "Tea Table",
+   560,
+   1135,
+   500,
+   500,
+   0
+  ],
+  [
+   "armchair",
+   "Armchair",
+   620,
+   1150,
+   750,
+   750,
+   0
+  ]
+ ],
+ "windowsConfidence": "partial"
+}

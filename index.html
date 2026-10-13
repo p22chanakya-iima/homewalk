@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Homewalk: walk through a flat before you buy it</title>
+<meta name="description" content="Homewalk turns the 2D floor plans in a builder's brochure into a 3D home you can orbit and light with the real Hyderabad sun. Furnishing it is in progress.">
+<meta name="theme-color" content="#ecebe6">
+<meta property="og:title" content="Homewalk: walk through a flat before you buy it">
+<meta property="og:description" content="Turn a brochure's 2D floor plan into a 3D home. Orbit it and move the real Hyderabad sun across it.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='%23f0a030'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#ecebe6; --surface:#fff; --line:#dedbd2; --ink:#14181f; --muted:#5d6675; --sky:#2f5f86; --sky-soft:#e2edf6;
+  --sun:#f0a030; --sun-soft:#fdf0d8; --leaf:#3f8a62; --shadow:0 24px 60px rgba(20,24,31,.14),0 2px 6px rgba(20,24,31,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;font-feature-settings:"cv11" 1}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px;border-radius:8px}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:50;background:rgba(236,235,230,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(20,24,31,.07)}
+.nav .wrap{display:flex;align-items:center;gap:28px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-.3px;text-decoration:none}
+.sunmark{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffd27a,var(--sun));box-shadow:0 0 0 4px var(--sun-soft)}
+.nav nav{display:flex;gap:24px;margin-left:12px;font-size:14.5px;font-weight:500;color:var(--muted)}
+.nav nav a{text-decoration:none}.nav nav a:hover{color:var(--ink)}
+.spacer{flex:1}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-weight:600;text-decoration:none;white-space:nowrap;transition:transform .15s,background .15s,box-shadow .15s}
+.btn.primary{background:var(--ink);color:#fff;padding:11px 22px;box-shadow:0 6px 18px rgba(20,24,31,.22)}
+.btn.primary:hover{background:#262c36;transform:translateY(-1px)}
+.btn.sm{padding:9px 18px;font-size:14.5px;box-shadow:none}
+.btn.lg{padding:13px 28px;font-size:16.5px}
+.btn .arr{transition:transform .15s}.btn:hover .arr{transform:translateX(3px)}
+
+/* hero */
+.hero{padding:40px 0 20px;text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--sky);background:var(--sky-soft);border-radius:999px;padding:6px 14px}
+h1{text-wrap:balance;font-size:clamp(34px,5.2vw,58px);line-height:1.04;letter-spacing:-.035em;margin:16px auto 14px;max-width:17ch;font-weight:700}
+.lead{font-size:clamp(16px,1.8vw,19px);color:var(--muted);max-width:60ch;margin:0 auto 22px}
+.cta-note{margin:10px 0 0;font-size:13.5px;color:var(--muted)}
+
+/* live frame */
+.stage{padding:20px 0 8px}
+.frame{position:relative;border-radius:22px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;aspect-ratio:16/8.6}
+.frame .poster,.frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.frame .poster{object-fit:cover}
+.frame iframe{opacity:0;transition:opacity .5s}
+.frame.live iframe{opacity:1}
+.badge{position:absolute;left:14px;top:14px;z-index:3;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.9);border:1px solid rgba(20,24,31,.08);border-radius:999px;padding:6px 13px;font-size:12.5px;font-weight:600;box-shadow:0 2px 8px rgba(20,24,31,.1)}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--leaf);box-shadow:0 0 0 3px rgba(63,138,98,.2)}
+.tap{position:absolute;inset:0;z-index:2;display:none;align-items:center;justify-content:center;background:rgba(20,24,31,.28);border:0;cursor:pointer}
+.tap span{background:#fff;border-radius:999px;padding:13px 24px;font-weight:600;font-size:16px;box-shadow:0 8px 24px rgba(20,24,31,.25)}
+.caption{margin:14px auto 0;font-size:14px;color:var(--muted);text-align:center;max-width:70ch}
+.caption b{color:var(--ink);font-weight:600}
+
+/* sections */
+section{padding:88px 0}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--sky);margin:0 0 12px}
+h2{text-wrap:balance;font-size:clamp(26px,4vw,42px);line-height:1.12;letter-spacing:-.025em;margin:0 0 16px;font-weight:700;max-width:22ch}
+.sub{color:var(--muted);font-size:18px;max-width:58ch;margin:0}
+.qs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 22px 24px}
+.q b{display:block;font-size:19px;letter-spacing:-.01em;margin-bottom:6px;line-height:1.3}
+.q span{color:var(--muted);font-size:15px}
+
+.feature{display:grid;grid-template-columns:1fr 1.25fr;gap:56px;align-items:center;padding:36px 0}
+.feature.flip{grid-template-columns:1.25fr 1fr}
+.feature.flip .copy{order:2}
+.feature h3{font-size:clamp(24px,3vw,32px);letter-spacing:-.02em;line-height:1.15;margin:0 0 12px}
+.feature p{color:var(--muted);margin:0 0 16px;font-size:17px}
+.feature ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.feature li{position:relative;padding-left:26px;font-size:15.5px}
+.feature li:before{content:"";position:absolute;left:2px;top:.5em;width:12px;height:12px;border-radius:50%;background:var(--sun)}
+.wip{display:inline-flex;align-items:center;gap:6px;vertical-align:middle;margin-left:10px;font-size:12px;font-weight:700;letter-spacing:.02em;color:#8a5d0e;background:var(--sun-soft);border:1px solid #f0d29a;border-radius:999px;padding:3px 11px;position:relative;top:-2px}
+.wip:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sun)}
+.shot{border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;background:#fff}
+.shot img{display:block;width:100%;height:auto}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;counter-increment:s}
+.step:before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;margin-bottom:14px}
+.step b{display:block;font-size:18px;margin-bottom:4px}.step span{color:var(--muted);font-size:15px}
+
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}
+.fact b{display:block;font-size:30px;letter-spacing:-.03em;line-height:1.1}
+.fact span{display:block;margin-top:6px;color:var(--muted);font-size:14.5px}
+.src{margin-top:16px;font-size:13.5px;color:var(--muted)}
+
+.honest{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:34px 36px;display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:start}
+.honest ul{margin:0;padding:0;list-style:none;display:grid;gap:14px}
+.honest li{padding-left:28px;position:relative;font-size:15.5px;color:#2c3340}
+.honest li:before{content:"";position:absolute;left:0;top:.45em;width:14px;height:14px;border-radius:4px;background:var(--sun-soft);border:2px solid var(--sun)}
+.honest li b{color:var(--ink)}
+
+.close{background:var(--ink);color:#fff;border-radius:28px;padding:64px 32px;text-align:center;margin-bottom:56px}
+.close h2{color:#fff;margin:0 auto 14px;max-width:18ch}.close p{color:#b9c0cc;margin:0 auto 28px;max-width:48ch}
+.close .btn.primary{background:#fff;color:var(--ink);box-shadow:none}.close .btn.primary:hover{background:#f1efea}
+footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--muted);font-size:13.5px}
+footer .wrap{display:grid;gap:8px}
+
+@media (max-width:860px){
+  .nav nav{display:none}
+  .qs,.steps,.facts{grid-template-columns:1fr}
+  .feature,.feature.flip{grid-template-columns:1fr;gap:24px}.feature.flip .copy{order:0}
+  .honest{grid-template-columns:1fr;padding:26px 22px;gap:18px}
+  section{padding:60px 0}.hero{padding:44px 0 16px}
+  .frame{aspect-ratio:4/5}
+  .tap{display:flex}.frame.live .tap{display:none}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Homewalk home"><span class="sunmark"></span>Homewalk</a>
+    <nav aria-label="Primary"><a href="#how">How it works</a><a href="#demo-today">In the demo</a></nav>
+    <span class="spacer"></span>
+    <a class="btn primary sm" href="app.html">Demo <span class="arr" aria-hidden="true">→</span></a>
+  </div>
+</header>
+
+<main id="main">
+<div id="top"></div>
+<section class="hero" aria-labelledby="h1" style="padding-bottom:12px">
+  <div class="wrap">
+    <span class="eyebrow">For people buying a flat from a brochure</span>
+    <h1 id="h1">Walk through your flat before you buy it.</h1>
+    <p class="lead">Homewalk turns the 2D floor plans in a builder's brochure into a 3D home you can orbit and light with the real Hyderabad sun. Furnishing it is in progress.</p>
+    <a class="btn primary lg" href="app.html">Open the demo <span class="arr" aria-hidden="true">→</span></a>
+    <p class="cta-note">Runs in your browser. No sign-up.</p>
+  </div>
+</section>
+
+<div class="stage">
+  <div class="wrap">
+    <div class="frame" id="frame">
+      <span class="badge"><i></i>Live demo</span>
+      <img class="poster" src="assets/hero.jpg" width="1440" height="677" alt="3D view of a 3 BHK flat from above, with room labels and a sun time scrubber">
+      <button class="tap" id="tap" type="button" aria-label="Load the interactive 3D demo"><span>Tap to explore</span></button>
+      <iframe id="live" title="Interactive 3D view of Type 07, IRA Aspiration" data-src="app.html?embed=1&plan=ira-type07" loading="lazy"></iframe>
+    </div>
+    <p class="caption"><b>This is the product, not a video.</b> Type 07, IRA Aspiration (3 BHK, west-facing). Drag to orbit, switch to iso or top view, toggle furniture and labels, and move the sun.</p>
+  </div>
+</div>
+
+<section aria-labelledby="problem">
+  <div class="wrap">
+    <p class="kicker">The problem</p>
+    <h2 id="problem">A brochure plan gives you sizes. You need to know how it feels.</h2>
+    <p class="sub">The questions that decide a purchase are hard to answer from a flat drawing.</p>
+    <div class="qs">
+      <div class="q"><b>Will the living room get sun in the evening?</b><span>Orientation and window position are in the drawing, but the light is not.</span></div>
+      <div class="q"><b>Will our bed and wardrobe fit?</b><span>Room sizes are printed as feet and inches, which is hard to picture.</span></div>
+      <div class="q"><b>Which type, and which facing?</b><span>A project can have a dozen plans that look alike on paper.</span></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="features" style="padding-top:20px">
+  <div class="wrap">
+    <p class="kicker">What it does</p>
+    <h2 id="features">See it, light it. Furnishing is next.</h2>
+
+    <div class="feature">
+      <div class="copy">
+        <h3>The real sun, in every room</h3>
+        <p>Pick a date and a time in Hyderabad. Light and shadows follow the actual position of the sun, and Homewalk estimates the hours of direct sun each room gets and when.</p>
+        <ul>
+          <li>Date and time scrubber, with sunrise and sunset for that day</li>
+          <li>Direct-sun hours and time window for every room</li>
+          <li>Orientation taken from the brochure's own compass</li>
+        </ul>
+      </div>
+      <figure class="shot" style="margin:0"><img src="assets/sun.jpg" width="1440" height="677" loading="lazy" alt="Details panel listing each room with its direct-sun hours, beside the 3D flat lit by the evening sun"></figure>
+    </div>
+
+    <div class="feature flip">
+      <div class="copy">
+        <h3>Tour it in 3D</h3>
+        <p>Orbit the whole flat, switch to an iso or top view, cut the walls away to see inside, or walk through it at eye level. Doors open.</p>
+        <ul>
+          <li>Orbit, iso, top, cutaway and walk modes</li>
+          <li>Room labels with areas</li>
+          <li>Fly to any room from the room strip</li>
+        </ul>
+      </div>
+      <figure class="shot" style="margin:0"><img src="assets/tour.jpg" width="1440" height="677" loading="lazy" alt="Cutaway 3D view of a 3 BHK flat with furniture and room labels"></figure>
+    </div>
+
+    <div class="feature">
+      <div class="copy">
+        <span class="wip" style="margin:0 0 12px;top:0">In progress</span>
+        <h3>Furnish it and check the fit</h3>
+        <p>Being built. An early version already lets you drag furniture from a library of 60 items onto the plan, rotate it, measure walls, and see an estimate of the interiors and flooring cost in rupees.</p>
+        <ul>
+          <li>Dimensioned 2D plan with room areas</li>
+          <li>Furniture shown in every plan</li>
+          <li>Placing your own furniture: in progress</li>
+        </ul>
+      </div>
+      <figure class="shot" style="margin:0"><img src="assets/furnish.jpg" width="1440" height="677" loading="lazy" alt="Dimensioned 2D plan of a 3 BHK flat with furniture and room areas"></figure>
+    </div>
+  </div>
+</section>
+
+<section id="how" aria-labelledby="how-h" style="padding-top:20px">
+  <div class="wrap">
+    <p class="kicker">How it works</p>
+    <h2 id="how-h">From brochure page to a home you can walk through.</h2>
+    <div class="steps">
+      <div class="step"><b>Pick a home type</b><span>Browse the plan types of a project, filtered by size and facing.</span></div>
+      <div class="step"><b>Tour it, move the sun</b><span>Orbit or walk the 3D flat, and see how the light moves through the day.</span></div>
+      <div class="step"><b>Furnish and check the fit <span class="wip" style="margin-left:6px">In progress</span></b><span>Place your furniture to see if it fits, then go back and open another type.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="demo-today" aria-labelledby="today-h" style="padding-top:20px">
+  <div class="wrap">
+    <p class="kicker">In the demo today</p>
+    <h2 id="today-h">One real project, every plan type in its brochure.</h2>
+    <div class="facts">
+      <div class="fact"><b>13</b><span>home types from the IRA Aspiration brochure</span></div>
+      <div class="fact"><b>2 &amp; 3 BHK</b><span>from 1,295 to 2,195 sft</span></div>
+      <div class="fact"><b>E · W · N</b><span>east, west and north-facing plans</span></div>
+      <div class="fact"><b>Kollur</b><span>off the ORR, Hyderabad</span></div>
+    </div>
+    <p class="src">Project facts come from the IRA Aspiration brochure. Homewalk is an independent project and is not affiliated with IRA Realty.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="close">
+    <h2>Try it on a real flat.</h2>
+    <p>Open the demo, pick a type from IRA Aspiration, and walk through it.</p>
+    <a class="btn primary lg" href="app.html">Open the demo <span class="arr" aria-hidden="true">→</span></a>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Homewalk. Plans are indicative and not an offer or a legal document.</div>
+    <div>Sun position by <a href="https://github.com/mourner/suncalc" target="_blank" rel="noopener">SunCalc</a>. 3D by <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a>. Type set in Inter.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var frame = document.getElementById('frame'), live = document.getElementById('live'), tap = document.getElementById('tap'), loaded = false;
+  function load(){ if (loaded) return; loaded = true; live.src = live.dataset.src; }
+  // the app tells us when its 3D view is ready, then the poster gives way to the live view
+  addEventListener('message', function(e){ if (e.origin === location.origin && e.data && e.data.homewalk === 'ready') frame.classList.add('live'); });
+  var phone = matchMedia('(max-width:860px)').matches;
+  if (phone){ tap.addEventListener('click', load); }                       // phones: load the WebGL view only on tap
+  else if ('IntersectionObserver' in window){ new IntersectionObserver(function(en, ob){ if (en[0].isIntersecting){ load(); ob.disconnect(); } }, {rootMargin:'200px'}).observe(frame); }
+  else load();
+})();
+</script>
+</body>
+</html>
